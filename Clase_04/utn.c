@@ -3,25 +3,36 @@
 
 int utn_getNUmber(int* pNumero, int max, int min, char* msgPregunta, char* msgError, int intentosMax)
 {
-    int intentos = 0;
+    int auxNum;
     int execution = -1;
     int boolean = -1;
     printf("%s", msgPregunta);
-    scanf("%d", pNumero);
+    while(intentosMax>0){
+
+        if(scanf("%d", &auxNum) == 0){ // es num?
+            if(auxNum > min && auxNum < max){
+                *pNumero = auxNum;
+                break;
+            }
+        }
+        printf("%s", msgError);
+        intentosMax--;
+    }//TERMINAR USANDO BREAK
+/*
     if(*pNumero > min && *pNumero < max){
         execution = 0;
     }else{
-        while(boolean == -1 && intentos<intentosMax){
+        while(boolean == -1 && intentosMax>0){
             printf("%s", msgError);
             scanf("%d", pNumero);
             if(*pNumero > min && *pNumero < max){
                 boolean = 0;
                 execution = 0;
             }
-            intentos++;
+            intentosMax--;
         }
     }
 
-
+*/
     return execution;
 }
